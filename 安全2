@@ -1,0 +1,88 @@
+﻿7.2
+ctime
+atime
+
+chattr +i +a
+lsattr
+
+su  -   -c   "命令"
+
+sudo 
+
+root 分配    vim /etc/sudoers
+
+who all=(all)    /bin   !/sbin/*
+
+vim /etc/ssh/sshd_config
+
+ssh-keygen
+
+ssh-copy-id
+
+
+
+
+AES DES  对称  
+
+RSA DSA  非对称
+
+(gnupg2) 
+
+MD5 SHA256  SHA512  数据完整性校验
+
+md5sum 文件
+
+yum -y install gnupg2
+
+gpg -c
+
+gpg -d
+
+
+准备 GPG 公私钥
+gpg --gen-key
+gpg --list-key
+gpg -a --export USERA  >  ASCII公钥X
+scp X 目标/X
+gpg --import  X
+
+加密文件
+gpg -e(加密) -r(指定用户)   > 文件
+
+scp 文件.gpg 目标
+
+gpg -d 文件.gpg 
+  
+gpg -b 文件
+
+scp 文件，文件.sig
+
+gpg --verify   文件.sig
+
+
+入侵检测
+yum -y install aide
+vim /etc/aide.conf
+#/boot   NORMAL                                    //对哪些目录进行什么校验
+
+aide -init
+
+cp /var/lib/aide/aide.db.new.gz   aide.db.gz
+
+aide check
+
+
+扫描与抓包分析
+扫描  
+yum -y install nmap
+nmap -sS  半开 -sT -sU  -sP   -A   +IP（网段）
+nmap -p 端口
+nmap -n 不使用域名解析提高速度
+tcpdump -A host IP and tcp port 21 
+-i(网卡） -A （转码） -w（保存） -r（？）  
+host net port portrange
+src dst
+tcp udp ip wlan arp
+and or not 
+
+
