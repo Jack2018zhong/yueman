@@ -1,0 +1,33 @@
+audit 监控文件
+yum -y install audit
+起服务
+auditctl -s -l -D
+audit -w path -p rwxa -k key_name
+vim /etc/audit/rules.d/audit.rules
+-w pasth -p rwxa -k 名称
+tailf   /var/log/audit/audit.log
+ausearch -k 关键词  -i（交互式）
+加固nginx
+删除不要的模块 without
+隐藏版本信息   http 模块  server_tokens off;
+vim +48 src/http/ngx_http_header_filter_module.c
+重新安装
+限制并发
+配置  limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+      limit _req zone=one burst=5;
+curl -i(头部） -X（指定）
+if （$request_method !~ ^(GET|POST)$ )  {
+         return 444
+     }
+加固数据库
+起服务 mysql  -uroot -p123456 谢绝明文
+mysqladmin -uroot -p123456 password "X"
+mysqldump  -uroot -p123456--all-databasess > all.sql
+mysql -uroot -p123456 < all.sql
+tcpdump -w log -i any src or dst port 3306   先SSH 再数据库
+tomcat
+jar -xf catalina.jar
+vim org/apache/catalina/util/ServerInfo.properties
+隐藏版本信息
+降级启动
+
