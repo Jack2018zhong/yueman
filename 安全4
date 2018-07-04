@@ -1,0 +1,6 @@
+NAT FILETER RAW MANGLE 
+INPUT OUTPUT FORWARD PREROUTING POSTROUTING
+iptables -nL --line-numbers
+iptables -F
+echo 1  > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -p tcp --dport 80 -j (nat --to-source 192.168.2.5) (MASQUERADE)
